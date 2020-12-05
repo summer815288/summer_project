@@ -1,0 +1,24 @@
+before_script:
+  - echo "Before script"
+  - find / -name git_master.sh
+
+building:
+  stage: build
+  script:
+    - echo "building..."
+    - cd  /builds/summer815288/test/
+    # 执行git命令
+    - git branch
+    - git pull origin sim
+    - git checkout master
+    - git merge origin/sim
+    - git push origin master
+
+testing:
+  stage: test
+  script:
+    - echo "testing..."
+deploying:
+  stage: deploy
+  script:
+    - echo "deploying..."
