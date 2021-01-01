@@ -3,5 +3,13 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/pydata-book" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/python_project/Images360" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/python_project/ScrapyDownloaderTest" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/python_project/ScrapySeleniumTest" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/python_project/ScrapySplashTest" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/python_project/ScrapyTutorial" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/python_project/ScrapyUniversal" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/python_project/Weibo" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/python_project/influencer" vcs="Git" />
   </component>
 </project>
