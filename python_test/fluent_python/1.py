@@ -117,21 +117,21 @@
 # print(list_data)
 
 # tag 函数用于生成 HTML 标签；使用名为 cls 的关键字参数传入“class”属性，这是一种变通方法，因为“class”是 Python 的关键字
-def tag(name, *content, cls=None, **attrs):
-    """生成一个或多个HTML标签"""
-    if cls is not None:
-        attrs['class'] = cls
-    if attrs:
-        attr_str = ''.join(' %s="%s"' % (attr, value)
-                           for attr, value
-                           in sorted(attrs.items()))
-    else:
-        attr_str = ''
-    if content:
-        return '\n'.join('<%s%s>%s</%s>' %
-                         (name, attr_str, c, name) for c in content)
-    else:
-        return '<%s%s />' % (name, attr_str)
+# def tag(name, *content, cls=None, **attrs):
+#     """生成一个或多个HTML标签"""
+#     if cls is not None:
+#         attrs['class'] = cls
+#     if attrs:
+#         attr_str = ''.join(' %s="%s"' % (attr, value)
+#                            for attr, value
+#                            in sorted(attrs.items()))
+#     else:
+#         attr_str = ''
+#     if content:
+#         return '\n'.join('<%s%s>%s</%s>' %
+#                          (name, attr_str, c, name) for c in content)
+#     else:
+#         return '<%s%s />' % (name, attr_str)
 
 
 # # 把 tag 函数（见示例 5-10）的签名绑定到一个参数字典上
@@ -147,12 +147,79 @@ def tag(name, *content, cls=None, **attrs):
 # bound_args = sig.bind(**my_tag)
 # print(bound_args)
 
-href = "https://www.amazon.com/Maxboost-Protector-Designed-compatible-Alignment/dp/B08JX7VFTB?keywords=shoe"
-keywords = ''
-if href and '?keywords' in href:
-    str_end = href.find('?keywords=')
-    if str_end:
-        keywords = href[str_end+len('?keywords='):]
-        href = href[0:str_end]
-print(href)
-print(keywords)
+# class HauntedBus:
+#     """备受幽灵乘客折磨的校车"""
+#
+#     # 对象引用、可变性和垃圾回收 ｜ 191
+#     def __init__(self, passengers=[]):  # ➊如果没传入 passengers 参数，使用默认绑定的列表对象，一开始是空列表。
+#
+#         '''
+#          ➋这个赋值语句把 self.passengers 变成 passengers 的别名，而没有传入 passengers 参
+# 数时，后者又是默认列表的别名。
+#  self.passengers 上调用 .remove() 和 .append() 方法时，修改的其实是默认列表，
+# 它是函数对象的一个属性。
+#         '''
+#         self.passengers = passengers
+#
+#         # ➌ self.passengers 上调用 .remove() 和 .append() 方法时，修改的其实是默认列表，
+#
+#     # 它是函数对象的一个属性。
+#     def pick(self, name):
+#         self.passengers.append(name)
+#
+#     def drop(self, name):
+#         self.passengers.remove(name)
+#
+#
+# bus1 = HauntedBus(['Alice', 'Bill'])
+# print(bus1.passengers)
+# print("\n")
+# bus1.pick('Charlie')
+# bus1.drop('Alice')
+# print(bus1.passengers)
+# print("\n")
+# bus2 = HauntedBus()
+# bus2.pick('Carrie')
+# print(bus2.passengers)
+# print("\n")
+#
+# bus3 = HauntedBus()
+# print(bus3.passengers)
+# print("\n")
+
+# # 不要使用可变类型作为参数的默认值
+# bus3.pick('Dave')
+# print(bus2.passengers)
+# print("\n")
+# print(bus2.passengers is bus3.passengers)
+# print("\n")
+# print(bus1.passengers)
+#
+# print(dir(HauntedBus.__init__))
+# print(HauntedBus.__init__.__defaults__)
+# print(HauntedBus.__init__.__defaults__[0] is bus2.passengers)
+
+# #有问题-del不删除对象，而是删除对象的引用
+# import weakref
+#
+# s1 = {1, 2, 3}
+# s2 = s1  # ➊s1 和 s2 是别名，指向同一个集合，{1, 2, 3}
+#
+#
+# def bye():  # ➋这个函数一定不能是要销毁的对象的绑定方法，否则会有一个指向对象的引用。
+#     print('Gone with the wind...')
+#
+#
+# ender = weakref.finalize(s1, bye)  # ➌ s1 引用的对象上注册 bye 回调
+# print(ender.alive)  # ➍ 调用 finalize 对象之前，.alive 属性的值为 True
+#
+# print(s1)
+# print(s2)
+# del s1  # ➎如前所述，del 不删除对象，而是删除对象的引用。
+# print(ender.alive)
+# # print(s1)
+# print(s2)
+# s2 = 'spam'  # ➏重新绑定最后一个引用 s2，让 {1, 2, 3} 无法获取。对象被销毁了，调用了 bye 回调，ender.alive 的值变成了 False。
+# print(ender.alive)
+
+from diamond import *
